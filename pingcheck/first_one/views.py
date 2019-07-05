@@ -12,6 +12,7 @@ def ping(request):
 
         result = subprocess.Popen('ping -w 5 ' + ipaddress, shell=True, stdout=subprocess.PIPE).stdout.read()
 
-        return HttpResponse('<pre>' + result.decode('cp866') + '</pre>')
+        # return HttpResponse('<pre>' + result.decode('cp866') + '</pre>')
+        return render(request, 'ping_result.html', {'result': result.decode('cp866')})
     else:
-        return render(request, 'template.html')
+        return render(request, 'ping_input.html')
