@@ -5,7 +5,8 @@
     <title>Ping!</title>
 </head>
 <body>
-<form method="POST" class="post-form">{% csrf_token %}
+
+<form method="POST">{% csrf_token %}
     <label for="id_ipaddress">IP Address / Host: :</label>
     <br>
     <input type="text" name="ipaddress" id="id_ipaddress">

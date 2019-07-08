@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Post</title>
+</head>
+<body>
+<form method="POST">{% csrf_token %}
+    <label for="id_post_name">Название: </label>
+    <input type="text" name="post_name" id="id_post_name">
+    <label for="id_post_text">Содержимое: </label>
+    <input type="text" name="post_text" id="id_post_text">
+    <label for="id_post_image">Изображение: </label>
+    <input type="text" name="post_image" id="id_post_image">
+    <button type="submit">Отправить!</button>
+</form>
+</body>
+</html>
