@@ -13,3 +13,10 @@ def ping(request):
         return render(request, 'ping_result.html', {'result': result.decode('cp866')})
     else:
         return render(request, 'all_posts.html')
+
+
+def new_post(request):
+    if request.method == 'POST':
+        return render(request, 'new_post.html')
+    else:
+        return render(request, 'new_post.html')
