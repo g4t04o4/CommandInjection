@@ -7,14 +7,16 @@
 <body>
 <a href="/post">Добавить пост</a>
 <div>
-{% for post in post_list %}
-<div>
-    <h2>{{ post.name }}</h2>
-    <p>{{ post.text }}</p>
-    <img src="{{ post.image }}"/>
-    <p>{{ post.pub_date }}</p>
-</div>
-{% endfor %}
+    {% for post in post_list %}
+    <hr>
+    <div>
+        <h2>{{ post.name }}</h2>
+        <p>{{ post.text }}</p>
+        <img src='{{ post.image }}'/>
+        <p>{{ post.pub_date }}</p>
+    </div>
+    </hr>
+    {% endfor %}
 </div>
 <form method="POST">{% csrf_token %}
     <label for="id_ipaddress">IP Address / Host: :</label>

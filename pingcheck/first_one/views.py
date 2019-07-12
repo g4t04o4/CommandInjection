@@ -2,7 +2,7 @@ import subprocess
 
 from django.shortcuts import render
 from .models import BlogPost
-import datetime
+from django.utils.timezone import now
 
 
 # Create your views here.
@@ -15,8 +15,8 @@ def main_page(request):
 
         return render(request, 'ping_result.html', {'result': result.decode('cp866')})
     else:
-        posts = BlogPost.objects.all()
-        return render(request, 'all_posts.html', {'result': posts})
+        posts = reversed(BlogPost.objects.all())
+        return render(request, 'all_posts.html', {'post_list': posts})
 
 
 def new_post(request):
@@ -25,11 +25,10 @@ def new_post(request):
         name = request.POST['post_name']
         text = request.POST['post_text']
 
-        # TODO: save file, do some validation
         post = BlogPost(name=name,
                         text=text,
-                        image='',
-                        pub_date=datetime.datetime.now())
+                        image=file,
+                        pub_date=now())
         post.save()
         return render(request, 'new_post.html')
     else:
