@@ -12,17 +12,20 @@
     <div>
         <h2>{{ post.name }}</h2>
         <p>{{ post.text }}</p>
-        <img src='{{ post.image }}'/>
+        <img src='{{ post.image.url }}'/>
         <p>{{ post.pub_date }}</p>
     </div>
     </hr>
     {% endfor %}
 </div>
 <form method="POST">{% csrf_token %}
-    <label for="id_ipaddress">IP Address / Host: :</label>
+    <label for="id_ipaddress">IP Address / Host:</label>
     <br>
     <input type="text" name="ipaddress" id="id_ipaddress">
     <button type="submit">Ping!</button>
 </form>
+{% if post_list %}
+<a href="/clear">Clear all posts!</a>
+{% endif %}
 </body>
 </html>

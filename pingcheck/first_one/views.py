@@ -1,6 +1,5 @@
-import subprocess
-
-from django.shortcuts import render
+import subprocess, os, shutil
+from django.shortcuts import render, redirect
 from .models import BlogPost
 from django.utils.timezone import now
 
@@ -15,7 +14,7 @@ def main_page(request):
 
         return render(request, 'ping_result.html', {'result': result.decode('cp866')})
     else:
-        posts = reversed(BlogPost.objects.all())
+        posts = list(reversed(BlogPost.objects.all()))
         return render(request, 'all_posts.html', {'post_list': posts})
 
 
@@ -33,3 +32,10 @@ def new_post(request):
         return render(request, 'new_post.html')
     else:
         return render(request, 'new_post.html')
+
+
+def clear(request):
+    BlogPost.objects.all().delete()
+    if os.path.isdir('image'):
+        shutil.rmtree('image')
+    return redirect('/')
