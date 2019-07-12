@@ -1,7 +1,7 @@
 import subprocess, os, shutil
 from django.shortcuts import render, redirect
 from .models import BlogPost
-from django.utils.timezone import now
+
 
 
 # Create your views here.
@@ -20,14 +20,17 @@ def main_page(request):
 
 def new_post(request):
     if request.method == 'POST':
+
         file = request.FILES['post_image']
         name = request.POST['post_name']
         text = request.POST['post_text']
 
+        if file is None or name is None:
+            return render(request, 'new_post.html')
+
         post = BlogPost(name=name,
                         text=text,
-                        image=file,
-                        pub_date=now())
+                        image=file)
         post.save()
         return render(request, 'new_post.html')
     else:
