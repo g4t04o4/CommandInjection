@@ -3,6 +3,7 @@ echo Installing virtual environment
 python -m venv .
 call Scripts\activate.bat &
 pip install Django & 
-py manage.py makemigrations first_one &
-py manage.py migrate &
+echo Creating DB &
+python pingcheck\manage.py makemigrations first_one &
+python pingcheck\manage.py migrate &
 Scripts\deactivate.bat
