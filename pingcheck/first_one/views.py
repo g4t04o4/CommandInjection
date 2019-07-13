@@ -21,11 +21,11 @@ def main_page(request):
 def new_post(request):
     if request.method == 'POST':
 
-        file = request.FILES['post_image']
+        file = request.FILES.get('post_image', False)
         name = request.POST['post_name']
         text = request.POST['post_text']
 
-        if file is None or name is None:
+        if file == False or name in [None, '']:
             return render(request, 'new_post.html')
 
         post = BlogPost(name=name,
